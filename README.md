@@ -3,13 +3,7 @@
 A Python script to generate parametrized variations of prompts and get results from API calls to LLMs.
 
 
-
-
-
-:::info
 Currently only support for OpenAI’s ChatGPT is available.
-
-:::
 
 
 ## Rationale
@@ -39,16 +33,12 @@ Test an API call with various parametrized values:
 
 
 
-
-:::warning
 Parameters not yet implemented include:
 
 * Seeds
 * Frequency penalties
 * Presence penalties
 * Top p
-
-:::
 
 
 ## Usage
@@ -63,10 +53,6 @@ prmtrzr = LLMParametrizer()
 
 
 
-
-
-
-:::tip
 Make sure you have a .env file with the OPEN_AI_API_KEY variable pointing to your OpenAI API key:
 
 ```python
@@ -74,13 +60,12 @@ OPEN_AI_API_KEY=sk-proj-<your API key here>
 prmtrzr.initialize_OpenAI()
 ```
 
+
 Alternatively, pass your OpenAI key when initializing.
 
 ```python
 prmtrzr.initialize_OpenAI("sk-proj-<your API key here>")
 ```
-
-:::
 
 
 You can then add prompts, models, and temperatures:
