@@ -142,7 +142,7 @@ class LLMParametrizer:
             if output_csv:
                 with open(f"results_{date}", mode='w', newline='') as file:
                     writer = csv.writer(file)
-                    writer.writerow(["Prompt User", "Prompt System", "Temperature", "Model", "Time", "Response"])
+                    writer.writerow(["Prompt User", "Prompt System", "Temperature", "Model", "Date", "Response"])
                     writer.writerows(csv_data)
 
             return results
