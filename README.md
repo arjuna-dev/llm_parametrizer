@@ -79,40 +79,40 @@ The above code would generate 6 prompts (2 models times 3 temperatures).
 With `prmtrzr.show_parameters()` you can print the parameters that have been so far added:
 
 
-Prompt user: 'Write a single letter of your choice'
-Prompt system: 'You are a helpful assistant.'
-Temperature: 0.5
-Model: gpt-4o
-
-
-Prompt user: 'Write a single letter of your choice'
-Prompt system: 'You are a helpful assistant.'
-Temperature: 1.0
-Model: gpt-4o
-
-
-Prompt user: 'Write a single letter of your choice'
-Prompt system: 'You are a helpful assistant.'
-Temperature: 2
-Model: gpt-4o
-
-
-Prompt user: 'Write a single letter of your choice'
-Prompt system: 'You are a helpful assistant.'
-Temperature: 0.5
-Model: gpt-3.5-turbo
-
-
-Prompt user: 'Write a single letter of your choice'
-Prompt system: 'You are a helpful assistant.'
-Temperature: 1.0
-Model: gpt-3.5-turbo
-
-
-Prompt user: 'Write a single letter of your choice'
-Prompt system: 'You are a helpful assistant.'
-Temperature: 2
-Model: gpt-3.5-turbo
+>Prompt user: 'Write a single letter of your choice'  
+>Prompt system: 'You are a helpful assistant.'  
+>Temperature: 0.5  
+>Model: gpt-4o  
+>  
+>  
+>Prompt user: 'Write a single letter of your choice'  
+>Prompt system: 'You are a helpful assistant.'  
+>Temperature: 1.0  
+>Model: gpt-4o  
+>  
+>  
+>Prompt user: 'Write a single letter of your choice'  
+>Prompt system: 'You are a helpful assistant.'  
+>Temperature: 2  
+>Model: gpt-4o  
+>  
+>  
+>Prompt user: 'Write a single letter of your choice'  
+>Prompt system: 'You are a helpful assistant.'  
+>Temperature: 0.5  
+>Model: gpt-3.5-turbo  
+>  
+>  
+>Prompt user: 'Write a single letter of your choice'  
+>Prompt system: 'You are a helpful assistant.'  
+>Temperature: 1.0  
+>Model: gpt-3.5-turbo  
+>  
+>  
+>Prompt user: 'Write a single letter of your choice'  
+>Prompt system: 'You are a helpful assistant.'  
+>Temperature: 2  
+>Model: gpt-3.5-turbo  
 
 
 
@@ -132,46 +132,46 @@ The `run` method returns a prettyfied string which includes the responses. So 
 
 
 
-Prompt: 'Write a single letter of your choice'
-Temperature: 0.5
-Model: gpt-4o
-Date: 2024-05-18-19-59-01
-Response: A
-
-
-Prompt: 'Write a single letter of your choice'
-Temperature: 1.0
-Model: gpt-4o
-Date: 2024-05-18-19-59-01
-Response: A
-
-
-Prompt: 'Write a single letter of your choice'
-Temperature: 2
-Model: gpt-4o
-Date: 2024-05-18-19-59-01
-Response: L
-
-
-Prompt: 'Write a single letter of your choice'
-Temperature: 0.5
-Model: gpt-3.5-turbo
-Date: 2024-05-18-19-59-01
-Response: A
-
-
-Prompt: 'Write a single letter of your choice'
-Temperature: 1.0
-Model: gpt-3.5-turbo
-Date: 2024-05-18-19-59-01
-Response: G
-
-
-Prompt: 'Write a single letter of your choice'
-Temperature: 2
-Model: gpt-3.5-turbo
-Date: 2024-05-18-19-59-01
-Response: E
+> Prompt: 'Write a single letter of your choice'  
+> Temperature: 0.5  
+> Model: gpt-4o  
+> Date: 2024-05-18-19-59-01  
+> Response: A  
+>   
+>   
+> Prompt: 'Write a single letter of your choice'  
+> Temperature: 1.0  
+> Model: gpt-4o  
+> Date: 2024-05-18-19-59-01  
+> Response: A  
+>   
+>   
+> Prompt: 'Write a single letter of your choice'  
+> Temperature: 2  
+> Model: gpt-4o  
+> Date: 2024-05-18-19-59-01  
+> Response: L  
+>   
+>   
+> Prompt: 'Write a single letter of your choice'  
+> Temperature: 0.5  
+> Model: gpt-3.5-turbo  
+> Date: 2024-05-18-19-59-01  
+> Response: A  
+>   
+>   
+> Prompt: 'Write a single letter of your choice'  
+> Temperature: 1.0  
+> Model: gpt-3.5-turbo  
+> Date: 2024-05-18-19-59-01  
+> Response: G  
+>   
+>   
+> Prompt: 'Write a single letter of your choice'  
+> Temperature: 2  
+> Model: gpt-3.5-turbo  
+> Date: 2024-05-18-19-59-01  
+> Response: E  
 
 
 
@@ -192,13 +192,13 @@ results = prmtrzr.run(output_csv=True)
 This will save a csv file viewable in google sheets or similar software:
 
 
-Prompt,Temperature,Model,Time,Response  
-Write a single letter of your choice,0.5,gpt-4o,2024-05-18-19-59-01,A  
-Write a single letter of your choice,1.0,gpt-4o,2024-05-18-19-59-01,A  
-Write a single letter of your choice,2,gpt-4o,2024-05-18-19-59-01,L  
-Write a single letter of your choice,0.5,gpt-3.5-turbo,2024-05-18-19-59-01,A  
-Write a single letter of your choice,1.0,gpt-3.5-turbo,2024-05-18-19-59-01,G  
-Write a single letter of your choice,2,gpt-3.5-turbo,2024-05-18-19-59-01,E  
+> Prompt,Temperature,Model,Time,Response  
+> Write a single letter of your choice,0.5,gpt-4o,2024-05-18-19-59-01,A  
+> Write a single letter of your choice,1.0,gpt-4o,2024-05-18-19-59-01,A  
+> Write a single letter of your choice,2,gpt-4o,2024-05-18-19-59-01,L  
+> Write a single letter of your choice,0.5,gpt-3.5-turbo,2024-05-18-19-59-01,A  
+> Write a single letter of your choice,1.0,gpt-3.5-turbo,2024-05-18-19-59-01,G  
+> Write a single letter of your choice,2,gpt-3.5-turbo,2024-05-18-19-59-01,E  
 
 
 ## License
