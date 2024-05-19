@@ -21,16 +21,12 @@ This script aims at easing the process of experimenting with prompts. More impor
 
 ## Features
 
-Test an API call with various parametrized values:
-
-* Prompts
-* Roles
-* Models
-* Temperatures
-
-  \
-
-
+* Test an API call with various parametrized values:
+  * Prompts
+  * Roles
+  * Models
+  * Temperatures
+* Save as CSV to view en google sheets or similar
 
 
 Parameters not yet implemented include:
