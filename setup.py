@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='llm_parametrizer',
-    version='0.1.1',
+    version='0.1.2',
     author ="Alejandro Camus",
     description="A library to parametrize multiple API calls for LLMs",
     long_description=long_description,
