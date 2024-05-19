@@ -131,6 +131,7 @@ results = prmtrzr.run()
 The `run` method returns a prettyfied string which includes the responses. So printing `results` with `print(results)` looks like this:
 
 
+
 Prompt: 'Write a single letter of your choice'
 Temperature: 0.5
 Model: gpt-4o
@@ -172,7 +173,6 @@ Model: gpt-3.5-turbo
 Date: 2024-05-18-19-59-01
 Response: E
 
-> \
 
 
 To get the raw data use:
@@ -193,12 +193,19 @@ This will save a csv file viewable in google sheets or similar software:
 
 
 Prompt,Temperature,Model,Time,Response
+
 Write a single letter of your choice,0.5,gpt-4o,2024-05-18-19-59-01,A
+
 Write a single letter of your choice,1.0,gpt-4o,2024-05-18-19-59-01,A
+
 Write a single letter of your choice,2,gpt-4o,2024-05-18-19-59-01,L
+
 Write a single letter of your choice,0.5,gpt-3.5-turbo,2024-05-18-19-59-01,A
+
 Write a single letter of your choice,1.0,gpt-3.5-turbo,2024-05-18-19-59-01,G
+
 Write a single letter of your choice,2,gpt-3.5-turbo,2024-05-18-19-59-01,E
+
 
 
 ## License
