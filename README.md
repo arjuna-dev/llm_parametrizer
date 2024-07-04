@@ -36,6 +36,9 @@ Parameters not yet implemented include:
 * Presence penalties
 * Top p
 
+## Installation
+
+```pip install llm-parametrizer```
 
 ## Usage
 
