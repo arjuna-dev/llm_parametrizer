@@ -109,7 +109,7 @@ class LLMParametrizer:
         return response
 
     def run(self, return_raw=False, output_csv=False):
-        assert self.prompts, "At least one prompt is required. use add_prompts() to add at least one prompt."
+        assert self.prompts, "At least one prompt is required. Use add_prompts() to add at least one prompt."
         date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = []
@@ -126,13 +126,20 @@ class LLMParametrizer:
                     prompt_user = parameters['messages'][1]['content']
                     temp = parameters['temperature']
                     model = parameters['model']
+
+                    try:
+                        response_json = json.loads(response)
+                        formatted_response = json.dumps(response_json, ensure_ascii=False)
+                    except json.JSONDecodeError:
+                        formatted_response = response
+
                     if return_raw:
                         results[str(parameters)] = future.result()
                     else:
                         results += f"Prompt user: '{prompt_user}'\nPrompt system: '{prompt_system}'\nTemperature: {temp}\nModel: {model}\nDate: {date}\nResponse: {response}\n\n"
 
                     if output_csv:
-                        csv_data.append([prompt_user, prompt_system, temp, model, date, response])
+                        csv_data.append([prompt_user, prompt_system, temp, model, date, formatted_response])
 
                 except Exception as e:
                     if return_raw:
@@ -140,7 +147,7 @@ class LLMParametrizer:
                     else:
                         results += f"Error: {str(e)}\n"
             if output_csv:
-                with open(f"results_{date}.csv", mode='w', newline='') as file:
+                with open(f"results_{date}.csv", mode='w', newline='', encoding='utf-8') as file:
                     writer = csv.writer(file)
                     writer.writerow(["Prompt User", "Prompt System", "Temperature", "Model", "Date", "Response"])
                     writer.writerows(csv_data)
@@ -150,4 +157,3 @@ class LLMParametrizer:
     def parametrize(self):
         combinations = product(self.messages, self.models, self.temperatures)
         self.all_parameters = [{'messages':messages, 'model': model, "temperature": temperature} for messages, model, temperature in combinations]
-
