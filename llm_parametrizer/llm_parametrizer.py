@@ -108,8 +108,8 @@ class LLMParametrizer:
         response = completion.choices[0].message.content
         return response
 
-    def run(self, return_raw=False, output_csv=False):
-        assert self.prompts, "At least one prompt is required. Use add_prompts() to add at least one prompt."
+    def run(self, return_raw=False, output_csv=False, output_json=False):
+        assert self.prompts, "At least one prompt is required. use add_prompts() to add at least one prompt."
         date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = []
@@ -117,7 +117,7 @@ class LLMParametrizer:
                 future = executor.submit(self.chatGPT_API_call, parameters)
                 futures.append((parameters, future))
 
-            results = {} if return_raw else ""
+            results = [] if output_json else {} if return_raw else ""
             csv_data = []
             for parameters, future in futures:
                 try:
@@ -126,33 +126,47 @@ class LLMParametrizer:
                     prompt_user = parameters['messages'][1]['content']
                     temp = parameters['temperature']
                     model = parameters['model']
-
-                    try:
-                        response_json = json.loads(response)
-                        formatted_response = json.dumps(response_json, ensure_ascii=False)
-                    except json.JSONDecodeError:
-                        formatted_response = response
-
+                    result_entry = {
+                        "Prompt User": prompt_user,
+                        "Prompt System": prompt_system,
+                        "Temperature": temp,
+                        "Model": model,
+                        "Date": date,
+                        "Response": response
+                    }
+                    
                     if return_raw:
-                        results[str(parameters)] = future.result()
+                        results[str(parameters)] = response
+                    elif output_json:
+                        results.append(result_entry)
                     else:
                         results += f"Prompt user: '{prompt_user}'\nPrompt system: '{prompt_system}'\nTemperature: {temp}\nModel: {model}\nDate: {date}\nResponse: {response}\n\n"
 
                     if output_csv:
-                        csv_data.append([prompt_user, prompt_system, temp, model, date, formatted_response])
+                        csv_data.append([prompt_user, prompt_system, temp, model, date, response])
 
                 except Exception as e:
-                    if return_raw:
-                        results[str(parameters)] = f"Error: {str(e)}"
+                    error_msg = f"Error: {str(e)}"
+                    if return_raw or output_json:
+                        results.append({"error": error_msg})
                     else:
-                        results += f"Error: {str(e)}\n"
+                        results += error_msg + "\n"
+
             if output_csv:
-                with open(f"results_{date}.csv", mode='w', newline='', encoding='utf-8') as file:
+                with open(f"results_{date}.csv", mode='w', newline='') as file:
                     writer = csv.writer(file)
                     writer.writerow(["Prompt User", "Prompt System", "Temperature", "Model", "Date", "Response"])
                     writer.writerows(csv_data)
 
-            return results
+            if output_json:
+                json_file_name = f"results_{date}.json"
+                with open(json_file_name, 'w') as json_file:
+                    json.dump(results, json_file, indent=4)
+
+                print(f"Results saved to {json_file_name}")
+            else:
+                return results
+
 
     def parametrize(self):
         combinations = product(self.messages, self.models, self.temperatures)
